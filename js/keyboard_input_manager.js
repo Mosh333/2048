@@ -55,28 +55,17 @@ KeyboardInputManager.prototype.listen = function () {
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;
     var mapped    = map[event.which];
-/*     var moveArray = [38, 39, 40, 37, 87, 68, 83, 65];
-    var playSound = 0; */
+    //var moveArray = [38, 39, 40, 37, 87, 68, 83, 65];
     var audio = new Audio('SFX.mp3');
-
+    
     if (!modifiers) {
       if (mapped !== undefined) {
+        //If a key is pressed
         event.preventDefault();
         self.emit("move", mapped);
         audio.play();
       }
     }
-
-    //If a key is pressed
-/*     for(var i = 0; i < moveArray.length; i++){
-        if(event.which == moveArray[i]){
-            playSound = 1
-        }        
-    }
-    if(playSound == 1){
-        playSound = 0
-        
-    } */
     
     // R key restarts the game
     if (!modifiers && event.which === 82) {
