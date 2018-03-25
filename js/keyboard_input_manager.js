@@ -50,18 +50,34 @@ KeyboardInputManager.prototype.listen = function () {
   };
 
   // Respond to direction keys
+  // We will add some sound when one of the the tiles are moved!
   document.addEventListener("keydown", function (event) {
     var modifiers = event.altKey || event.ctrlKey || event.metaKey ||
                     event.shiftKey;
     var mapped    = map[event.which];
+/*     var moveArray = [38, 39, 40, 37, 87, 68, 83, 65];
+    var playSound = 0; */
+    var audio = new Audio('SFX.mp3');
 
     if (!modifiers) {
       if (mapped !== undefined) {
         event.preventDefault();
         self.emit("move", mapped);
+        audio.play();
       }
     }
 
+    //If a key is pressed
+/*     for(var i = 0; i < moveArray.length; i++){
+        if(event.which == moveArray[i]){
+            playSound = 1
+        }        
+    }
+    if(playSound == 1){
+        playSound = 0
+        
+    } */
+    
     // R key restarts the game
     if (!modifiers && event.which === 82) {
       self.restart.call(self, event);
